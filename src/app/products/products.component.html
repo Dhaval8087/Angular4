@@ -1,6 +1,6 @@
 <div class='panel panel-primary'>
   <div class='panel-heading'>
-   <h2>{{pageTitle}}</h2>
+    <h2>{{pageTitle}}</h2>
   </div>
   <div class='panel-body'>
     <div class="row">
@@ -19,8 +19,8 @@
         <thead>
           <tr>
             <th>
-              <button class="btn btn-primary">
-                Show Image
+              <button class="btn btn-primary" (click)='toggleImage()'>
+               {{showImage ? 'Hide' : 'Show'}} Image
               </button>
             </th>
             <th>Product</th>
@@ -32,12 +32,17 @@
         </thead>
         <tbody>
           <tr *ngFor='let product of products'>
-           <td><img src={{product.url}}/></td>
-           <td>{{product.productName}}</td>
-           <td>{{product.productCode}}</td>
-           <td>{{product.releaseDate}}</td>
-           <td>{{product.price}}</td>
-           <td>{{product.star}}</td>
+            <td>
+              <img  *ngIf='showImage'
+              src={{product.url}} 
+              [style.width.px]='imagewidth' 
+              [style.margin.px]='imageMargin' />
+            </td>
+            <td>{{product.productName}}</td>
+            <td>{{product.productCode}}</td>
+            <td>{{product.releaseDate}}</td>
+            <td>{{product.price}}</td>
+            <td>{{product.star}}</td>
           </tr>
         </tbody>
       </table>
